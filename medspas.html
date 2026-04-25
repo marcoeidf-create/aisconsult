@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI Systems consulting for med spa founders. Find the six figures your spa is leaking. Diagnosed in two weeks.">
+<title>AIS · AI Systems Consulting for Med Spas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --base: #FAF7F2;
+    --surface: #F2EDE5;
+    --surface-deep: #EAE3D6;
+    --ink: #1F2421;
+    --ink-soft: #3A3F3B;
+    --muted: #8A8275;
+    --sage: #3E5C4A;
+    --sage-deep: #2E4537;
+    --terracotta: #C68B59;
+    --terracotta-deep: #AB733F;
+    --rule: #E3DDD2;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --container: 1120px;
+    --narrow: 720px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+  .narrow { max-width: var(--narrow); margin: 0 auto; padding: 0 32px; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 400; letter-spacing: -0.025em; }
+  h2 { font-size: clamp(30px, 4vw, 42px); letter-spacing: -0.02em; }
+  h3 { font-size: clamp(22px, 2.4vw, 26px); font-weight: 500; }
+  h4 { font-size: 20px; font-weight: 500; font-family: var(--sans); letter-spacing: -0.005em; }
+
+  p { color: var(--ink-soft); }
+  p + p { margin-top: 16px; }
+
+  a { color: var(--sage); text-decoration: none; border-bottom: 1px solid rgba(62, 92, 74, 0.25); transition: border-color 0.15s ease; }
+  a:hover { border-color: var(--sage); }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 28px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border-bottom: none;
+  }
+  .btn-primary {
+    background: var(--terracotta);
+    color: #FFFFFF;
+    box-shadow: 0 1px 2px rgba(31, 36, 33, 0.08), 0 4px 16px rgba(171, 115, 63, 0.15);
+  }
+  .btn-primary:hover { background: var(--terracotta-deep); transform: translateY(-1px); border-bottom: none; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    padding: 14px 0;
+  }
+  .btn-ghost:hover { color: var(--sage); border-bottom: none; }
+  .btn .arrow { transition: transform 0.2s ease; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(250, 247, 242, 0.85);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 32px;
+    max-width: var(--container); margin: 0 auto;
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    border-bottom: none;
+  }
+  .logo span { color: var(--sage); }
+  .nav-cta {
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    padding: 9px 18px; border-radius: 8px;
+    background: var(--ink); color: var(--base);
+    border-bottom: none;
+  }
+  .nav-cta:hover { background: var(--sage-deep); border-bottom: none; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 100px 0; }
+  .section-surface { background: var(--surface); }
+  .section-head { text-align: center; margin-bottom: 64px; }
+  .section-head p { margin-top: 18px; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 120px 0 140px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .hero .eyebrow { margin-bottom: 24px; }
+  .hero h1 {
+    margin-bottom: 28px;
+    font-size: clamp(40px, 5.6vw, 68px);
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+  }
+  .hero h1 em { font-style: italic; color: var(--sage); font-weight: 400; }
+  .hero .lede {
+    font-size: clamp(17px, 1.4vw, 19px);
+    line-height: 1.6;
+    max-width: 560px;
+    margin-bottom: 36px;
+    color: var(--ink-soft);
+  }
+  .hero-ctas { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+
+  .hero-aside {
+    position: relative;
+    padding-left: 28px;
+    border-left: 2px solid var(--sage);
+  }
+  .hero-aside .quote-mark {
+    font-family: var(--serif);
+    font-size: clamp(64px, 8vw, 96px);
+    line-height: 0.8;
+    color: var(--sage);
+    font-style: italic;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .hero-aside .thesis {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .hero-aside .thesis em {
+    font-style: italic;
+    color: var(--sage);
+    font-weight: 400;
+  }
+  .hero-aside .attribution {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-image {
+    aspect-ratio: 4/5;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  .leak-panel {
+    width: 100%;
+    background: transparent;
+    padding: 4% 6% 4% 6%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .leak-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .leak-figure {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 6.5vw, 78px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .leak-divider {
+    height: 2px;
+    width: 48px;
+    background: var(--sage);
+    margin-bottom: 28px;
+  }
+  .leak-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+    margin-bottom: auto;
+  }
+  .leak-cell-label {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 4px;
+    letter-spacing: 0.01em;
+  }
+  .leak-cell-figure {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .leak-footnote {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ---------- Problem ---------- */
+  .leaks-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px;
+    max-width: 960px; margin: 0 auto;
+  }
+  .leak {
+    border-top: 1px solid var(--rule);
+    padding-top: 32px;
+  }
+  .leak-num {
+    font-family: var(--serif); font-size: 15px; font-weight: 500;
+    color: var(--sage); letter-spacing: 0.02em; margin-bottom: 16px;
+  }
+  .leak h3 { margin-bottom: 14px; font-family: var(--serif); font-weight: 500; }
+  .pullquote {
+    max-width: 720px; margin: 96px auto 0;
+    padding: 32px 40px;
+    border-left: 3px solid var(--sage);
+    background: var(--surface-deep);
+    font-family: var(--serif); font-size: 22px; font-style: italic;
+    line-height: 1.45; color: var(--ink);
+  }
+
+  /* ---------- Offer ---------- */
+  .offer-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    max-width: 1080px; margin: 0 auto;
+  }
+  .offer-card {
+    background: var(--base);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 48px 44px;
+    box-shadow: 0 1px 2px rgba(31, 36, 33, 0.04), 0 16px 40px rgba(31, 36, 33, 0.05);
+  }
+  .offer-card h2 { font-size: 30px; margin-bottom: 10px; }
+  .offer-card .subtitle { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 28px; }
+  .offer-list { list-style: none; margin: 0 0 32px 0; padding: 0; }
+  .offer-list li {
+    padding: 14px 0; border-bottom: 1px solid var(--rule);
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .offer-list li:last-child { border-bottom: none; }
+  .offer-list strong { font-weight: 500; color: var(--ink); }
+  .offer-list .dot { color: var(--sage); flex-shrink: 0; margin-top: 4px; }
+  .price-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 20px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    margin-bottom: 24px;
+  }
+  .price { font-family: var(--serif); font-size: 40px; font-weight: 500; color: var(--ink); letter-spacing: -0.02em; }
+  .price-note { color: var(--muted); font-size: 14px; }
+  .guarantee {
+    font-size: 15px; color: var(--ink-soft); padding: 16px 20px;
+    background: var(--surface); border-radius: 6px; margin-bottom: 28px;
+    border-left: 2px solid var(--sage);
+  }
+  .guarantee strong { color: var(--sage-deep); font-weight: 500; }
+  .offer-cta-wrap { text-align: center; }
+  .offer-cta-wrap p { font-size: 13px; color: var(--muted); margin-top: 12px; }
+  .offer-image {
+    aspect-ratio: 3/4;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .offer-image::before {
+    content: "";
+    position: absolute;
+    top: 4%; left: 4%; right: -4%; bottom: -4%;
+    background: #F4EFE5;
+    box-shadow: 0 20px 40px rgba(31, 36, 33, 0.06);
+    z-index: 0;
+  }
+  .report-doc {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    padding: 10% 9% 7% 9%;
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+      0 1px 2px rgba(31, 36, 33, 0.04),
+      0 12px 32px rgba(31, 36, 33, 0.08),
+      0 40px 80px rgba(31, 36, 33, 0.06);
+    z-index: 1;
+  }
+  .report-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 9%;
+    line-height: 1.5;
+  }
+  .report-eyebrow .sep { color: var(--rule); margin: 0 6px; }
+  .report-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 3.1vw, 34px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 8%;
+  }
+  .report-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.4vw, 16px);
+    margin-bottom: 8%;
+  }
+  .report-item {
+    padding: 2px 0 2px 14px;
+    border-left: 2px solid var(--sage);
+    font-family: var(--sans);
+    font-size: clamp(12px, 1.3vw, 15px);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 1.4;
+  }
+  .report-item .dash { color: var(--muted); margin: 0 6px; }
+  .report-item .figure { font-weight: 600; letter-spacing: -0.01em; }
+  .report-total {
+    font-family: var(--sans);
+    font-size: clamp(13px, 1.35vw, 16px);
+    font-weight: 600;
+    color: var(--ink);
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--sage);
+    align-self: flex-start;
+    margin-bottom: auto;
+    letter-spacing: -0.005em;
+  }
+  .report-footer {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 6%;
+  }
+
+  /* ---------- How it works ---------- */
+  .steps { max-width: 820px; margin: 0 auto; }
+  .step {
+    display: grid; grid-template-columns: 140px 1fr; gap: 40px;
+    padding: 40px 0; border-bottom: 1px solid var(--rule);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-label {
+    font-family: var(--serif); font-style: italic;
+    color: var(--sage); font-size: 17px;
+  }
+  .step h3 { font-family: var(--serif); font-weight: 500; margin-bottom: 12px; }
+  .how-close { text-align: center; color: var(--muted); margin-top: 48px; font-size: 15px; font-style: italic; font-family: var(--serif); }
+
+  /* ---------- Walk away ---------- */
+  .walk-list { list-style: none; max-width: 720px; margin: 0 auto; padding: 0; }
+  .walk-list li {
+    display: flex; gap: 16px; padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 18px;
+  }
+  .walk-list li:last-child { border-bottom: none; }
+  .walk-list .check { color: var(--sage); flex-shrink: 0; width: 20px; height: 20px; margin-top: 4px; }
+
+  /* ---------- About ---------- */
+  .about-grid {
+    display: grid; grid-template-columns: 320px 1fr; gap: 64px; align-items: start;
+    max-width: 960px; margin: 0 auto;
+  }
+  .about-photo {
+    aspect-ratio: 4/5;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 16px 40px rgba(31, 36, 33, 0.08);
+  }
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .about h2 { margin-bottom: 24px; }
+  .about p + p { margin-top: 18px; }
+  .sig {
+    margin-top: 28px; font-family: var(--serif); font-style: italic;
+    font-size: 22px; color: var(--sage);
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-list { max-width: 780px; margin: 0 auto; }
+  .faq {
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0;
+  }
+  .faq:first-child { border-top: 1px solid var(--rule); }
+  .faq-q {
+    font-family: var(--serif); font-size: 22px; font-weight: 500;
+    margin-bottom: 12px; color: var(--ink);
+  }
+  .faq-a { color: var(--ink-soft); font-size: 17px; line-height: 1.65; }
+
+  /* ---------- Final CTA ---------- */
+  .final {
+    background: var(--sage);
+    padding: 120px 0;
+    text-align: center;
+  }
+  .final h2 { color: var(--base); font-family: var(--serif); margin-bottom: 20px; }
+  .final p { color: rgba(250, 247, 242, 0.82); font-size: 19px; max-width: 580px; margin: 0 auto 40px; }
+  .final .btn-primary { background: var(--base); color: var(--sage-deep); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+  .final .btn-primary:hover { background: #FFFFFF; }
+  .final-note { margin-top: 20px; color: rgba(250, 247, 242, 0.6); font-size: 14px; }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 48px 0; border-top: 1px solid var(--rule); }
+  .foot-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 14px; color: var(--muted);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .foot-links a { color: var(--muted); border-bottom: none; margin-left: 24px; }
+  .foot-links a:hover { color: var(--sage); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px) {
+    section { padding: 72px 0; }
+    .hero { padding: 72px 0 72px; }
+    .hero { padding: 88px 0 96px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hero h1 { font-size: clamp(40px, 9vw, 56px); }
+    .hero-aside { max-width: 520px; }
+    .leaks-grid { grid-template-columns: 1fr; gap: 32px; }
+    .offer-grid { grid-template-columns: 1fr; gap: 48px; }
+    .offer-image { display: none; }
+    .step { grid-template-columns: 1fr; gap: 12px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .about-photo { max-width: 280px; }
+    .nav-cta { padding: 8px 14px; font-size: 13px; }
+    .offer-card { padding: 36px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">AIS<span>.</span></a>
+    <a href="#book" class="nav-cta">Book a fit call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-main">
+        <div class="eyebrow">For Med Spa Owners · $2M–$20M Revenue</div>
+        <h1>You're leaving <em>six figures</em> a year on your booking line.</h1>
+        <p class="lede">Most med spas lose $50,000–$150,000 a year to missed calls, slow consult follow-up, and rebooking drift. You can feel it. You can't name the number. I diagnose it in two weeks and design the AI systems that close it.</p>
+        <div class="hero-ctas">
+          <a href="#book" class="btn btn-primary">Book a 15-minute fit call <span class="arrow">→</span></a>
+          <a href="#offer" class="btn btn-ghost">See how the Diagnostic works</a>
+        </div>
+      </div>
+      <aside class="hero-aside">
+        <span class="quote-mark">“</span>
+        <div class="thesis">You don't have a marketing problem. <em>You have a front desk problem.</em></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section-surface">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">The Problem</div>
+      <h2>What you can't see from the owner's chair</h2>
+      <p>Your marketing is fine. Your providers are booked. Your reviews are strong. And yet the P&amp;L isn't matching what the top of the funnel should be producing. That's not a demand problem — it's almost always operational leakage, hiding in four specific places.</p>
+    </div>
+
+    <div class="leaks-grid">
+      <div class="leak">
+        <div class="leak-num">01</div>
+        <h3>Missed inbound calls</h3>
+        <p>20–30% of new-patient calls go unanswered on the first try. A missed call converts to a missed booking about 60% of the time — and a missed booking is a missed treatment plan, not just a missed visit.</p>
+      </div>
+      <div class="leak">
+        <div class="leak-num">02</div>
+        <h3>Consult follow-up that dies in 72 hours</h3>
+        <p>Most prospects who cool off after a consult do so within three days. Your front desk is in treatment. Your CRM doesn't know the difference between a warm lead and a cold one. Revenue evaporates quietly.</p>
+      </div>
+      <div class="leak">
+        <div class="leak-num">03</div>
+        <h3>No-shows and late cancels</h3>
+        <p>A 15–25% no-show rate is normal. A 5–8% rate is achievable. The difference is 10–15 points of margin, every month, compounding, with no new marketing spend.</p>
+      </div>
+      <div class="leak">
+        <div class="leak-num">04</div>
+        <h3>Rebooking and reactivation</h3>
+        <p>40% of first-time med spa clients never return. You feel it, and nobody on your team owns it. The LTV gap between a 40% and a 60% return rate is usually 2–3x the entire marketing budget.</p>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      These are not tool problems. They are architecture problems. Buying more software doesn't fix them — it makes the leaks faster.
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section id="offer">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">The Offer</div>
+      <h2>The AIS Revenue Leak Diagnostic</h2>
+      <p>Two weeks. Four working sessions. I sit inside your business — your booking data, your CRM, your call logs, your show rates — and come back with a written diagnosis.</p>
+    </div>
+
+    <div class="offer-grid">
+      <div class="offer-image">
+        <div class="report-doc">
+          <div class="report-eyebrow">
+            Revenue Leak Report<span class="sep">·</span>Prepared for Ridgeline Med Spa<span class="sep">·</span>April 2026<span class="sep">·</span>Confidential
+          </div>
+          <h3 class="report-title">Summary of annual<br>revenue leakage</h3>
+          <div class="report-list">
+            <div class="report-item"><span>Rebooking drift</span><span class="dash">—</span><span class="figure">$62,400</span></div>
+            <div class="report-item"><span>Missed inbound calls</span><span class="dash">—</span><span class="figure">$47,200</span></div>
+            <div class="report-item"><span>Consult follow-up decay</span><span class="dash">—</span><span class="figure">$28,500</span></div>
+            <div class="report-item"><span>No-shows and late cancellations</span><span class="dash">—</span><span class="figure">$18,900</span></div>
+          </div>
+          <div class="report-total">Total annual recoverable revenue: $157,000</div>
+          <div class="report-footer">— AIS Consulting</div>
+        </div>
+      </div>
+      <div class="offer-card">
+        <div class="subtitle">The Diagnostic</div>
+        <h2>Find the leak. In dollars.</h2>
+        <ul class="offer-list" style="margin-top: 24px;">
+          <li><span class="dot">●</span><span><strong>The Revenue Leak Report.</strong> Every leak in your operations, sized in dollars, ranked by size and effort to close.</span></li>
+          <li><span class="dot">●</span><span><strong>The 90-Day Systems Roadmap.</strong> The exact order to close the leaks in, what each system costs, what each one returns.</span></li>
+          <li><span class="dot">●</span><span><strong>A team walkthrough.</strong> A 60-minute session to align your ops lead and front desk on what to do next.</span></li>
+        </ul>
+
+        <div class="price-row">
+          <div class="price">$5,000</div>
+          <div class="price-note">Two weeks · paid up front</div>
+        </div>
+
+        <div class="guarantee">
+          <strong>Guarantee.</strong> If I don't identify at least $25,000 of annual recoverable revenue, the fee is refunded. No questions.
+        </div>
+
+        <div class="offer-cta-wrap">
+          <a href="#book" class="btn btn-primary">Book a 15-minute fit call <span class="arrow">→</span></a>
+          <p>The fit call is free. The Diagnostic isn't.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-surface">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Process</div>
+      <h2>How two weeks actually looks</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-label">Week 0</div>
+        <div>
+          <h3>The fit call</h3>
+          <p>Fifteen minutes. You describe the business. I confirm whether the Diagnostic is a fit or whether you'd be better served by something else. No pitch, no follow-up sequence — if it's a yes, we schedule.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-label">Week 1</div>
+        <div>
+          <h3>Data and discovery</h3>
+          <p>Read access to your booking tool, CRM, and call logs. Two 60-minute sessions with you and your ops lead. I shadow two hours of live front-desk operations remotely. I pull the numbers your dashboards don't show you.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-label">Week 2</div>
+        <div>
+          <h3>Diagnosis and roadmap</h3>
+          <p>I deliver the Revenue Leak Report and 90-Day Systems Roadmap. We close with a 60-minute team walkthrough. Your ops lead leaves with a ranked punch list. You leave with a number.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="how-close">
+      After week two, you're free to build the systems with your team, hire me to build them, or sit with the roadmap for a quarter. No lock-in.
+    </div>
+  </div>
+</section>
+
+<!-- WALK AWAY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">The Deliverable</div>
+      <h2>What you walk away with</h2>
+    </div>
+
+    <ul class="walk-list">
+      <li>
+        <svg class="check" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10.5L8 14L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>A dollar figure on every operational leak in the business.</span>
+      </li>
+      <li>
+        <svg class="check" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10.5L8 14L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>A ranked, prioritized list of AI systems to build — what, why, when, what each costs, what each returns.</span>
+      </li>
+      <li>
+        <svg class="check" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10.5L8 14L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>The written diagnostic report — in plain English your team can act on.</span>
+      </li>
+      <li>
+        <svg class="check" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10.5L8 14L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Clarity on whether to build, hire, or delay — for every gap.</span>
+      </li>
+      <li>
+        <svg class="check" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10.5L8 14L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Zero obligation to hire me for the builds.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section-surface">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">About</div>
+      <h2>Who you'd be working with</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="headshot.jpg" alt="Marco — founder of AIS Consulting">
+      </div>
+      <div class="about">
+        <p>I'm Marco, and AIS is a consulting practice for founders of med spas and wellness businesses who want leverage, not more software.</p>
+        <p>I've spent the last several years building AI systems for service-based businesses, and the pattern is always the same: revenue isn't hiding in marketing spend, and it isn't hiding in the treatment room. It's hiding in operational slippage most owners can't see because they're inside it — the missed call, the cold consult, the forgotten rebook, the manual confirmation.</p>
+        <p>I do the outside-in diagnosis, then design the fix. You work with me directly. No account managers, no offshore handoff, no deck.</p>
+        <div class="sig">— Marco</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Straight Answers</div>
+      <h2>Questions people ask on the first call</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq">
+        <div class="faq-q">Why pay $5,000 when I can get a consultation for free?</div>
+        <div class="faq-a">A free consultation is a sales call. You leave with a pitch. You leave the Diagnostic with a written dollar number on every leak in your business and a roadmap to close it — whether or not you ever hire me again.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">We already run Mindbody / Boulevard / Jane. Isn't that enough?</div>
+        <div class="faq-a">Those are tools. This is architecture. You can have the best EMR and booking system on the market and still leak revenue between the calls you miss, the consults that cool off, and the rebookings that never happen. The Diagnostic finds what the stack isn't catching.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">Can you guarantee ROI on the systems you build after?</div>
+        <div class="faq-a">I guarantee the Diagnostic itself — $25,000 of recoverable revenue identified, or fee refunded. For any builds that follow, every system is scoped against an explicit ROI threshold, and I won't recommend one that doesn't clear it.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">What if I'm under $2M in revenue?</div>
+        <div class="faq-a">You're probably too early for this. The Diagnostic is built for businesses with enough operational surface area to have six-figure leaks. Under $2M, the leverage usually lives in marketing and sales, not operations — and I'll tell you that on the fit call rather than take the engagement.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-q">How many clients do you work with at once?</div>
+        <div class="faq-a">A maximum of three diagnostic engagements run in parallel. The diagnosis is personal work — if I'm juggling ten of these, none of them get the attention they need.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="book">
+  <div class="narrow">
+    <div class="eyebrow" style="color: rgba(250, 247, 242, 0.5);">The next step</div>
+    <h2>The fit call is free. The Diagnostic isn't.</h2>
+    <p>If your intuition says there's six figures leaking somewhere in the business, this is the fastest way to get an answer. If there isn't, I'll tell you on the call — and you'll leave with a sharper map of your operations either way.</p>
+    <a href="#" class="btn btn-primary">Book a 15-minute fit call <span class="arrow">→</span></a>
+    <div class="final-note">Typical response time: under 12 hours.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-inner">
+      <div>© AIS Consulting · Built for founders of wellness businesses</div>
+      <div class="foot-links">
+        <a href="mailto:marco@aisconsult.co">marco@aisconsult.co</a>
+        <a href="#book">Book a call</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
