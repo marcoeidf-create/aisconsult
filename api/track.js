@@ -43,12 +43,10 @@ export default async function handler(req, res) {
       `https://ipinfo.io/${ip}/json?token=${process.env.IPINFO_TOKEN}`
     );
     const info = await ipinfoRes.json();
+    console.log('IPinfo response:', JSON.stringify(info));
 
-    const org = info.org || '';
+    const { ip: resolvedIp = ip, org = '', city = '', region = '', country = '' } = info;
     const company = org.replace(/^AS\d+\s*/, '').trim();
-    const city = info.city || '';
-    const region = info.region || '';
-    const country = info.country || '';
 
     if (isResidential(org)) {
       res.writeHead(200, { ...CORS_HEADERS, 'Content-Type': 'application/json' });
@@ -66,7 +64,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
         Prefer: 'return=minimal',
       },
-      body: JSON.stringify({ company, org, ip, city, region, country, page, referrer }),
+      body: JSON.stringify({ company, org, ip: resolvedIp, city, region, country, page, referrer }),
     });
 
     await fetch(process.env.SLACK_WEBHOOK_URL, {
